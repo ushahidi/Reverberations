@@ -52,7 +52,7 @@ def Oauthenticate():
     verifier = raw_input('Please enter the pin code: ')
     
     try:
-        auth.get_access_token(verifier)
+        token = auth.get_access_token(verifier)
     except tweepy.TweepError:
         print 'Error! Failed to get access token.'
 
@@ -60,10 +60,9 @@ def Oauthenticate():
     #save tokens to file
     filename = 'token.txt'
     FILE = open(filename, 'w')
-    FILE.write(auth.access_token.key)
-    FILE.write(auth.access_token.secret)
+    FILE.write(token.key+'\n')
+    FILE.write(token.secret)
     FILE.close()
-    
     api = tweepy.API(auth)
     return api
 
@@ -187,7 +186,7 @@ def main():
        key = f.readline()
        secret = f.readline()
        auth = tweepy.OAuthHandler('XSlYVMJ9ebCXOfdOPolgDg', 'RQdQxOnPFRqKogfVqL0JdpGwadXZ6XawtXn7QpcQ')
-       auth.set_access_token(key, secret)
+       auth.set_access_token(key.strip(), secret)
        api = tweepy.API(auth)
        
     else:
