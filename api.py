@@ -26,7 +26,7 @@ from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
 
 
-class MainHandler(tornado.web.RequestHandler):
+class TweetHandler(tornado.web.RequestHandler):
     def get(self):
         id =  self.get_argument("id")
         tree = reverb.rank(int(id))
@@ -39,7 +39,7 @@ class MainHandler(tornado.web.RequestHandler):
 def main():
     tornado.options.parse_command_line()
     application = tornado.web.Application([
-        (r"/", MainHandler),
+        (r"/tweet", TweetHandler),
     ])
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(options.port)
