@@ -170,7 +170,7 @@ def calcRank(tree):
 
 
     
-def rank(id):
+def rank(id,key,secret):
 
     try:
         stripped = str(int(id))
@@ -178,17 +178,9 @@ def rank(id):
         print 'not a valid tweet id, must be an intger value'
         return
         
-    if(os.path.isfile('token.txt')):
-       f = open('token.txt', 'r')
-       key = f.readline()
-       secret = f.readline()
-       auth = tweepy.OAuthHandler('XSlYVMJ9ebCXOfdOPolgDg', 'RQdQxOnPFRqKogfVqL0JdpGwadXZ6XawtXn7QpcQ')
-       auth.set_access_token(key.strip(), secret)
-       api = tweepy.API(auth)
-       
-    else:
-        api = Oauthenticate()
-
+    auth = tweepy.OAuthHandler('XSlYVMJ9ebCXOfdOPolgDg', 'RQdQxOnPFRqKogfVqL0JdpGwadXZ6XawtXn7QpcQ')
+    auth.set_access_token(key, secret)
+    api = tweepy.API(auth)
 
     try:
         tree = get_followers(id, api)
