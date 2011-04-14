@@ -29,6 +29,8 @@ define("port", default=8888, help="run on the given port", type=int)
 class TweetHandler(tornado.web.RequestHandler):
     def get(self):
         id =  self.get_argument("id")
+        secret = self.get_argument("key")
+        key    = self.get_argument("secret")
         tree = reverb.rank(int(id))
         results = []
         for tweet in tree:
