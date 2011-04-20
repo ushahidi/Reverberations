@@ -82,7 +82,7 @@ def get_exposition_rank(tweetID, auth):
     for status in retweets:
         total_followers += status.author.followers_count
     rank = (rt_count + 1)/( 0.1 * total_followers) * 100
-    result = { 'tweet_id':tweetId,'rank':rank  }
+    result = { 'tweet_id':tweetID,'rank':rank  }
     return result
 
 
@@ -196,7 +196,7 @@ def rank(id,key,secret):
     api = tweepy.API(auth)
 
     try:
-        tree = get_followers(id, api)
+        result = get_exposition_rank(id, api)
         
     except tweepy.TweepError:
         print 'token invalid'
@@ -205,7 +205,6 @@ def rank(id,key,secret):
         calcRank(tree)
 
     
-    SaveAndPickle(tree)
-    return tree
+    return result
 
         

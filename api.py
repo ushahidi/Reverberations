@@ -31,10 +31,7 @@ class TweetHandler(tornado.web.RequestHandler):
         id     =  self.get_argument("id")
         key    = self.get_argument("key")
         secret = self.get_argument("secret")
-        tree = reverb.rank(int(id),key,secret)
-        results = []
-        for tweet in tree:
-           results.append({ "twid":tweet.twid,"lvl":tweet.lvl,"rtusr":tweet.rtusr,"user_id": tweet.user.id,"ts":str(tweet.ts) ,"rank":tweet.rank   })
+        results  = reverb.rank(int(id),key,secret)
         self.write(json.dumps(results))
 
 
