@@ -73,6 +73,18 @@ def SaveAndPickle(tree):
     pickle.dump(tree, FILE)
 
 
+#creates a rank based on the exposition of a tweet
+def get_exposition_rank(tweetID, auth):
+    retweets = auth.retweets(tweetID)
+    twt = auth.get_status(tweetID) #get the original tweet
+    rt_count = twt.retweet_count
+    total_followers  = 1
+    for status in retweets:
+        total_followers += status.author.followers_count
+    rank = (rt_count + 1)/( 0.1 * total_followers) * 100
+    return rank
+
+
 #creates a retweet chian tree, if a retweet is not of a another retweet, it is assumed to be the direct retweet of the orignal tweet
 def get_followers(tweetID, auth):
     rt = auth.retweets(tweetID)
