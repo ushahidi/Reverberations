@@ -82,7 +82,8 @@ def get_exposition_rank(tweetID, auth):
     for status in retweets:
         total_followers += status.author.followers_count
     rank = (rt_count + 1)/( 0.1 * total_followers) * 100
-    return rank
+    result = { 'tweet_id':tweetId,'rank':rank  }
+    return result
 
 
 #creates a retweet chian tree, if a retweet is not of a another retweet, it is assumed to be the direct retweet of the orignal tweet
