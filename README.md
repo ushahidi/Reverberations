@@ -84,7 +84,7 @@ Lets say there tree looks like this...
 Tree Formation
 --------------
 
-Since the introduction of the new twitter retweet style, it is not possible to get exact information on whether a retweet is a retweet of the original tweet of a retweet of another retweet. Twitter does not provide functionality via the API for obtaining this type of information. All retweets are returned as retweets of the original tweet. So in order to form the tree we make use of a couple sources of information. (please note that this does not form a tree that is always exactly as how the retweets formed. It is an extrapolation of the information and may be slightly incorrect in some cases.)
+Since the introduction of the new twitter retweet style, it is not possible to get exact information on whether a retweet is a retweet of the original tweet or a retweet of another retweet. Twitter does not provide functionality via the API for obtaining this type of information. All retweets are returned as retweets of the original tweet. So in order to form the tree we make use of a couple sources of information. (please note that this does not form a tree that is always exactly as how the retweets formed. It is an extrapolation of the information and may be slightly incorrect in some cases.)
 the info used include:
 
 1. the returned tweets from the retweets API function
